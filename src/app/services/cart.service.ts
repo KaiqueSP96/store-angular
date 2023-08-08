@@ -65,18 +65,19 @@ export class CartService {
     });
   }
 
-  removeFromCart(_item: CartItem, update = true): Array<CartItem> {
+  removeFromCart(item: CartItem, updateCart = true): CartItem[] {
     const filteredItems = this.cart.value.items.filter(
-      (item) => item.id !== item.id
+      (_item) => _item.id !== item.id
     );
 
-    if (update) {
+    if (updateCart) {
       this.cart.next({ items: filteredItems });
-      this._snackBar.open('Item removido', 'Ok', {
+      this._snackBar.open('1 item removido do Carrinho.', 'Ok', {
         duration: 3000,
       });
     }
 
     return filteredItems;
   }
+
 }
